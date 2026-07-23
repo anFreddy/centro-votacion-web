@@ -8,11 +8,13 @@ function Login() {
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const [cargando, setCargando] = useState(false);
 
   const iniciarSesion = async (e) => {
     e.preventDefault();
 
     setMensaje("");
+    setCargando(true);
 
     try {
       const respuesta = await login(usuario, password);
@@ -27,6 +29,8 @@ function Login() {
       }
     } catch {
       setMensaje("Usuario o contraseña incorrectos");
+    } finally {
+      setCargando(false);
     }
   };
 
@@ -99,8 +103,23 @@ function Login() {
 
                 {mensaje && <div className="alert alert-danger">{mensaje}</div>}
 
-                <button className="btn btn-primary btn-lg w-100" type="submit">
-                  Iniciar Sesión
+                <button
+                  className="btn btn-primary btn-lg w-100"
+                  type="submit"
+                  disabled={cargando}
+                >
+                  {cargando ? (
+                    <>
+                      <span
+                        className="spinner-border spinner-border-sm me-2"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                      Iniciando sesión...
+                    </>
+                  ) : (
+                    "Iniciar Sesión"
+                  )}
                 </button>
               </form>
             </div>
