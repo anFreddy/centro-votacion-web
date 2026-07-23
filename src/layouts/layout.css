@@ -1,0 +1,11 @@
+.main-content {
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* Solo en escritorio */
+@media (min-width: 992px) {
+  .main-content {
+    margin-left: 260px;
+  }
+}
