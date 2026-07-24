@@ -2,11 +2,15 @@ import { useState, useEffect } from "react";
 import * as centroService from "../services/centroService";
 import CentroTable from "../components/centros/CentroTable";
 import CentroModal from "../components/centros/CentroModal";
+import Cargando from "../components/common/Cargando";
+import { useLoading } from "../context/LoadingContext";
 
 function Centros() {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [centrosObtenidos, setCentrosObtenidos] = useState(null);
   const [centroSeleccionado, setCentroSeleccionado] = useState(null);
+  const [cargando, setCargando] = useState(false);
+  const { mostrarCarga, ocultarCarga } = useLoading();
 
   useEffect(() => {
     obtenerCentros();
@@ -14,11 +18,14 @@ function Centros() {
 
   const obtenerCentros = async () => {
     try {
+      mostrarCarga("Cargando Centros...");
       const data = await centroService.obtenerCentros();
 
       setCentrosObtenidos(data);
     } catch (error) {
       console.log(error.response?.data?.mensaje);
+    } finally {
+      ocultarCarga();
     }
   };
 

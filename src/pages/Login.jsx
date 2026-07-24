@@ -70,6 +70,12 @@ function Login() {
             style={{ width: "420px" }}
           >
             <div className="card-body p-5">
+              <img
+                className="rounded mx-auto d-block mb-2"
+                src="./caja.png"
+                style={{ width: "100px", textAlign: "center" }}
+              ></img>
+
               <div className="text-center">
                 <h2 className="fw-bold mb-1">Bienvenido</h2>
 

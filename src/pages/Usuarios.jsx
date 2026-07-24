@@ -7,11 +7,13 @@ import {
   editarUsuario,
   eliminarUsuario,
 } from "../services/usuarioService";
+import { useLoading } from "../context/LoadingContext";
 
 function Usuarios() {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
   const [usuarios, setUsuarios] = useState([]);
+  const { mostrarCarga, ocultarCarga } = useLoading();
 
   useEffect(() => {
     cargarUsuarios();
@@ -19,6 +21,7 @@ function Usuarios() {
 
   const cargarUsuarios = async () => {
     try {
+      mostrarCarga("Cargando usuarios...");
       const data = await obtenerUsuarios();
 
       setUsuarios(data);
@@ -26,6 +29,8 @@ function Usuarios() {
       console.error(error);
 
       alert("No se pudieron cargar los usuarios.");
+    } finally {
+      ocultarCarga();
     }
   };
 

@@ -46,7 +46,7 @@ function BuscarCentroModal({ cerrar, seleccionar }) {
       className="modal fade show d-block"
       style={{ backgroundColor: "rgba(0,0,0,.5)" }}
     >
-      <div className="modal-dialog modal-lg">
+      <div className="modal-dialog modal-lg modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Buscar Centro de Votación</h5>

@@ -50,8 +50,11 @@ function CentroModal({ mostrar, cerrar, guardar, centroSeleccionado }) {
   if (!mostrar) return null;
 
   return (
-    <div className="modal fade show d-block">
-      <div className="modal-dialog">
+    <div
+      className="modal fade show d-block"
+      style={{ backgroundColor: "rgba(0,0,0,.5)" }}
+    >
+      <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
             <h5>{centroSeleccionado ? "Editar Centro" : "Nuevo Centro"}</h5>

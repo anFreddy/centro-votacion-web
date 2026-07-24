@@ -5,6 +5,7 @@ import * as personalService from "../services/personalService";
 import * as centroService from "../services/centroService";
 import BuscarCentroModal from "../components/personal/BuscarCentroModal";
 import * as usuarioService from "../services/usuarioService";
+import { useLoading } from "../context/LoadingContext";
 
 function Personal() {
   const [personal, setPersonal] = useState([]);
@@ -16,6 +17,7 @@ function Personal() {
   const [usuarioCentro, setUsuarioCentro] = useState(null);
   const [centroSeleccionado, setCentroSeleccionado] = useState(null);
   const [estadisticas, setEstadisticas] = useState([]);
+  const { mostrarCarga, ocultarCarga } = useLoading();
 
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const esAdministrador = usuario?.rol === "Administrador";
@@ -42,23 +44,31 @@ function Personal() {
   }, [esAdministrador]);
 
   const cambiarCentro = async (zona, centro) => {
-    if (zona) {
-      setIdZona(zona);
-    } else {
-      const datos = await centroService.obtener(centro);
-      setIdZona(datos.idZona);
+    try {
+      mostrarCarga("Cargando personal...");
+      if (zona) {
+        setIdZona(zona);
+      } else {
+        const datos = await centroService.obtener(centro);
+        setIdZona(datos.idZona);
+      }
+
+      setIdCentro(centro);
+
+      await Promise.all([
+        cargarCentro(centro),
+        cargarPersonal(centro),
+        obtenerUsuarioEncargado(centro),
+        cargarEstadisticas(centro),
+      ]);
+
+      setMostrarBuscarCentro(false);
+    } catch (error) {
+      alert(error.response?.data?.mensaje);
+      console.log(error);
+    } finally {
+      ocultarCarga();
     }
-
-    setIdCentro(centro);
-
-    await Promise.all([
-      cargarCentro(centro),
-      cargarPersonal(centro),
-      obtenerUsuarioEncargado(centro),
-      cargarEstadisticas(centro),
-    ]);
-
-    setMostrarBuscarCentro(false);
   };
 
   const cargarEstadisticas = async (idCentro) => {
@@ -143,7 +153,7 @@ function Personal() {
           </small>
         </div>
 
-        <div className="d-flex gap-2">
+        <div className="d-flex justify-content-end gap-2">
           {esAdministrador && (
             <button
               className="btn btn-outline-primary"

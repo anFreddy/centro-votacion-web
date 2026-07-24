@@ -102,8 +102,11 @@ function UsuarioModal({ mostrar, cerrar, guardar, usuarioSeleccionado }) {
   if (!mostrar) return null;
 
   return (
-    <div className="modal fade show d-block">
-      <div className="modal-dialog">
+    <div
+      className="modal fade show d-block"
+      style={{ backgroundColor: "rgba(0,0,0,.5)" }}
+    >
+      <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
             <h5>{usuarioSeleccionado ? "Editar Usuario" : "Nuevo Usuario"}</h5>

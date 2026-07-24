@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import * as dashboardService from "../services/dashboardService";
+import { useLoading } from "../context/LoadingContext";
 
 function Dashboard() {
   const [resumen, setResumen] = useState(null);
   const [resumenCentro, setResumenCentro] = useState(null);
+  const { mostrarCarga, ocultarCarga } = useLoading();
 
   const usuario = JSON.parse(localStorage.getItem("usuario"));
 
@@ -13,6 +15,8 @@ function Dashboard() {
       cargarResumenCentro();
     } catch (error) {
       console.log(error.response?.data?.mensaje);
+    } finally {
+      ocultarCarga();
     }
   }, []);
 
@@ -24,12 +28,14 @@ function Dashboard() {
   });
 
   const cargarResumen = async () => {
+    mostrarCarga("Cargando datos...");
     const data = await dashboardService.obtenerResumen();
 
     setResumen(data);
   };
 
   const cargarResumenCentro = async () => {
+    mostrarCarga("Cargando datos...");
     const data = await dashboardService.obtenerResumenCentro();
 
     setResumenCentro(data);
