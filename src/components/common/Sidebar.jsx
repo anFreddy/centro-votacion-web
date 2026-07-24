@@ -15,7 +15,7 @@ function Sidebar() {
 
   return (
     <div
-      className="d-flex flex-column bg-primary text-white shadow"
+      className="d-flex flex-column sidebar-custom text-white shadow"
       style={{
         width: "260px",
         position: "fixed",

@@ -1,0 +1,15 @@
+.sidebar-custom {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Modo claro */
+[data-bs-theme="light"] .sidebar-custom {
+  background: linear-gradient(180deg, #0d6efd, #0b5ed7);
+}
+
+/* Modo oscuro */
+[data-bs-theme="dark"] .sidebar-custom {
+  background: linear-gradient(180deg, #16213e, #0f3460);
+}

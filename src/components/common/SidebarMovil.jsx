@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import MenuSidebar from "./MenuSidebar";
+import "./Sidebar.css";
 
 function SidebarMovil() {
   const navigate = useNavigate();
@@ -15,13 +16,13 @@ function SidebarMovil() {
 
   return (
     <div
-      className="offcanvas offcanvas-start bg-primary text-white"
+      className="offcanvas offcanvas-start sidebar-custom text-white"
       tabIndex="-1"
       id="sidebarMovil"
     >
       {/* Encabezado */}
 
-      <div className="offcanvas-header border-bottom">
+      <div className="offcanvas-header sidebar-borde">
         <div>
           <i className="bi bi-ballot-fill fs-2"></i>
 
@@ -50,7 +51,7 @@ function SidebarMovil() {
 
         {/* Usuario */}
 
-        <div className="border-top pt-3">
+        <div className="sidebar-border pt-3">
           <div className="mb-3">
             <strong>{usuario?.usuario}</strong>
             <br />

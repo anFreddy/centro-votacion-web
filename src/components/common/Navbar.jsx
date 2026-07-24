@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../context/ThemeContext";
 
 function Navbar() {
   const navigate = useNavigate();
+  const { tema, cambiarTema } = useTheme();
 
   const usuario = JSON.parse(localStorage.getItem("usuario"));
 
@@ -13,7 +15,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-white shadow-sm px-4">
+    <nav className="navbar navbar-expand-lg bg-body shadow-sm px-4">
       <div className="container-fluid">
         <div className="d-flex align-items-center">
           <button
@@ -33,6 +35,15 @@ function Navbar() {
 
             <small className="text-muted">{usuario?.rol}</small>
           </div>
+
+          <button
+            className="btn btn-outline-secondary me-2"
+            onClick={cambiarTema}
+          >
+            <i
+              className={`bi ${tema === "dark" ? "bi-sun-fill" : "bi-moon-fill"}`}
+            ></i>
+          </button>
 
           <button className="btn btn-outline-danger" onClick={cerrarSesion}>
             <i className="bi bi-box-arrow-right"></i>

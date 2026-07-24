@@ -1,6 +1,11 @@
 .main-content {
-  background-color: #f5f7fa;
+  background-color: #f8f9fa;
   min-height: 100vh;
+  transition: background-color 0.3s ease;
+}
+
+[data-bs-theme="dark"] .main-content {
+  background-color: #030303;
 }
 
 /* Solo en escritorio */

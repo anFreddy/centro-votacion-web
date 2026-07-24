@@ -268,11 +268,13 @@ function Personal() {
       <div className="card shadow-sm border-0">
         <div className="card-header">Personal registrado</div>
         <div className="card-body">
-          <PersonalTable
-            datos={personal}
-            editar={editarRegistro}
-            eliminar={eliminarRegistro}
-          />
+          <div className="table-responsive">
+            <PersonalTable
+              datos={personal}
+              editar={editarRegistro}
+              eliminar={eliminarRegistro}
+            />
+          </div>
         </div>
       </div>
 

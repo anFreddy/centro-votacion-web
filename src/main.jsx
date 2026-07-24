@@ -5,13 +5,17 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { LoadingProvider } from "./context/LoadingContext";
 import App from "./App.jsx";
+
+import { LoadingProvider } from "./context/LoadingContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <LoadingProvider>
-      <App />
-    </LoadingProvider>
+    <ThemeProvider>
+      <LoadingProvider>
+        <App />
+      </LoadingProvider>
+    </ThemeProvider>
   </StrictMode>,
 );
