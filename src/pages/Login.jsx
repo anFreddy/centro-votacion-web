@@ -35,100 +35,76 @@ function Login() {
   };
 
   return (
-    <div className="container-fluid vh-100">
-      <div className="row h-100">
-        {/* Panel izquierdo */}
+    <div className="container-fluid">
+      <div className="min-vh-100 d-flex justify-content-center align-items-center">
+        <div
+          className="card shadow-lg border-0 rounded-4"
+          style={{ width: "420px" }}
+        >
+          <div className="card-body p-5">
+            <div className="text-center mb-4">
+              <h2 className="fw-bold mb-1">Centro de Votación</h2>
 
-        <div className="col-lg-7 d-none d-lg-flex flex-column justify-content-center text-white px-5">
-          <h1 className="display-3 fw-bold">Centro de Votación</h1>
+              <p className="text-muted mb-0">Sistema de registros</p>
+            </div>
+            <img
+              className="rounded mx-auto d-block mb-2"
+              src="./caja.png"
+              style={{ width: "100px", textAlign: "center" }}
+            ></img>
 
-          <h3 className="mb-4">Sistema de Administración</h3>
+            <div className="text-center">
+              <h2 className="fw-bold mb-1">Bienvenido</h2>
 
-          <p className="fs-5">
-            Administra usuarios, centros de votación, personal y reportes desde
-            una sola plataforma.
-          </p>
+              <p className="text-muted">Inicia sesión para continuar</p>
+            </div>
 
-          <div className="mt-5 fs-5">
-            <p>✔ Gestión de Usuarios</p>
+            <form onSubmit={iniciarSesion}>
+              <div className="mb-3">
+                <label className="form-label">Usuario</label>
 
-            <p>✔ Gestión de Centros</p>
-
-            <p>✔ Personal Asignado</p>
-
-            <p>✔ Reportes</p>
-
-            <p>✔ Seguridad mediante JWT</p>
-          </div>
-        </div>
-
-        {/* Login */}
-
-        <div className="col-lg-5 col-12 d-flex align-items-center justify-content-center">
-          <div
-            className="card shadow-lg border-0 rounded-4"
-            style={{ width: "420px" }}
-          >
-            <div className="card-body p-5">
-              <img
-                className="rounded mx-auto d-block mb-2"
-                src="./caja.png"
-                style={{ width: "100px", textAlign: "center" }}
-              ></img>
-
-              <div className="text-center">
-                <h2 className="fw-bold mb-1">Bienvenido</h2>
-
-                <p className="text-muted">Inicia sesión para continuar</p>
+                <input
+                  type="text"
+                  className="form-control form-control-lg"
+                  placeholder="Ingrese su usuario"
+                  value={usuario}
+                  onChange={(e) => setUsuario(e.target.value)}
+                />
               </div>
 
-              <form onSubmit={iniciarSesion}>
-                <div className="mb-3">
-                  <label className="form-label">Usuario</label>
+              <div className="mb-4">
+                <label className="form-label">Contraseña</label>
 
-                  <input
-                    type="text"
-                    className="form-control form-control-lg"
-                    placeholder="Ingrese su usuario"
-                    value={usuario}
-                    onChange={(e) => setUsuario(e.target.value)}
-                  />
-                </div>
+                <input
+                  type="password"
+                  className="form-control form-control-lg"
+                  placeholder="Ingrese su contraseña"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
 
-                <div className="mb-4">
-                  <label className="form-label">Contraseña</label>
+              {mensaje && <div className="alert alert-danger">{mensaje}</div>}
 
-                  <input
-                    type="password"
-                    className="form-control form-control-lg"
-                    placeholder="Ingrese su contraseña"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-
-                {mensaje && <div className="alert alert-danger">{mensaje}</div>}
-
-                <button
-                  className="btn btn-primary btn-lg w-100"
-                  type="submit"
-                  disabled={cargando}
-                >
-                  {cargando ? (
-                    <>
-                      <span
-                        className="spinner-border spinner-border-sm me-2"
-                        role="status"
-                        aria-hidden="true"
-                      ></span>
-                      Iniciando sesión...
-                    </>
-                  ) : (
-                    "Iniciar Sesión"
-                  )}
-                </button>
-              </form>
-            </div>
+              <button
+                className="btn btn-primary btn-lg w-100"
+                type="submit"
+                disabled={cargando}
+              >
+                {cargando ? (
+                  <>
+                    <span
+                      className="spinner-border spinner-border-sm me-2"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                    Iniciando sesión...
+                  </>
+                ) : (
+                  "Iniciar Sesión"
+                )}
+              </button>
+            </form>
           </div>
         </div>
       </div>
